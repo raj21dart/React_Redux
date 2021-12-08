@@ -1,17 +1,21 @@
+import React from 'react';
 import './App.css';
+import { useSelector, useDispatch } from 'react-redux'
+import { incNumber, decNumber } from './actions/index'
 
-import React from 'react'
 
 const App = () => {
+  const myState = useSelector((state) => state.changeTheNumber);
+  const dispatch = useDispatch();
   return (
-    <div>
+    <div className="center">
       <h1>Welcome to Redux</h1>
-      <h4>Using Redux</h4>
+      <h4 style={{marginLeft: '100px'}}>Using Redux</h4>
 
       <div className="main">
-        <button>-</button>
-        <span>{`10`}</span>
-        <button>+</button>
+        <button onClick={() => dispatch(decNumber())}>-</button>
+        <span>{myState}</span>
+        <button onClick={() => dispatch(incNumber(5))}>+</button>
       </div>
     </div>
   )
